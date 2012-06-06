@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Niconico check Popup</title>
+    <style>
+      body {
+        min-width: 300px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        color: #333;
+      }
+      img {
+        width: 100px;
+        margin-right: 10px;
+        float: left;
+      }
+      .item {
+        clear: both;
+        padding: 10px;
+      }
+      header {
+        text-align: right;
+        border-bottom-style: solid;
+        border-bottom-color: #ccc;
+        border-bottom-width: 1px;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+      }
+      header a {
+        text-decoration: none;
+        color: #333;
+      }
+    </style>
+
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="options.html" target="_blank" tabindex="-1">設定ページ</a>
+    </header>
+    <input type="text" id="id_mylist" size="8" placeholder="mylistID" />をウォッチリストに追加 <button id="addbutton">追加</button>
+    <div id="result"></div>
+  </body>
+</html>
