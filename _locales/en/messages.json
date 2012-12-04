@@ -1,0 +1,8 @@
+{
+  "name": {
+    "message": "Niconico Check"
+  },
+  "description": {
+    "message": "Check if there is update for the favorite video."
+  }
+}
