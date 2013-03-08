@@ -25,6 +25,21 @@ $(function() {
       show();
     }
   });
+  $('#readSelected').click(function(){
+    var checked = $(':checkbox:checked');
+    var res = confirm('選択したマイリスト内の動画を全て既読にしてもよいですか？');
+    if (res == true) {
+      for (var i = 0; i < checked.length; i++) {
+        var mylistId = checked[i].id.substr(-8);
+        var items = JSON.parse(localStorage.getItem(mylistId));
+        for (var j = 0; j < items.length; j++) {
+          var item = items[j];
+          chrome.history.addUrl({url: item.link}, null);
+        }
+        localStorage.setItem(mylistId, "[]");
+      }
+    }
+  });
 });
 
 function show() {

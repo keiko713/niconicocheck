@@ -6,6 +6,7 @@ $(function() {
 });
 
 function initialize() {
+  // localStorage 'mylist' has a list of mylist ID (8 digits)
   var mylist = JSON.parse(localStorage.getItem('mylist'));
   if (mylist == null) {
     mylist = [];
@@ -18,6 +19,8 @@ function checkUpdate() {
   newUnreadCount = 0;
   chrome.browserAction.setBadgeText({ text: "" });
   var mylist = JSON.parse(localStorage.getItem('mylist'));
+  // localStorage #{mylistId} has JSON Object
+  // { link: '', title: '', videoId: ''}
   for (var i = 0; i < mylist.length; i++) {
     var mylistId = mylist[i];
     // initialize item
