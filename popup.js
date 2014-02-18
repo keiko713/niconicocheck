@@ -12,7 +12,7 @@ $(function() {
   });
   $('#addbutton').click(function() {
     var mylistId = $('#id_mylist').val();
-    if (mylistId != null && mylistId != '' && mylistId.length == 8) {
+    if (mylistId != null && mylistId != '' && mylistId.match(/^[0-9]{7,8}$/)) {
       var mylist = JSON.parse(localStorage.getItem('mylist'));
       mylist.push(mylistId);
       localStorage.setItem('mylist', JSON.stringify(mylist));
