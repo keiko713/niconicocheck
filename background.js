@@ -6,7 +6,7 @@ $(function() {
 });
 
 function initialize() {
-  // localStorage 'mylist' has a list of mylist ID (8 digits)
+  // localStorage 'mylist' has a list of mylist ID (7 or 8 digits)
   var mylist = JSON.parse(localStorage.getItem('mylist'));
   if (mylist == null) {
     mylist = [];
@@ -41,7 +41,7 @@ function checkUpdate() {
 function addUnread(item, mylistId) {
   var link = $(item).find('link').text();
   var title = $(item).find('title').text();
-  var videoId = link.substr(-8);
+  var videoId = link.match(/\d*$/)[0];
   chrome.history.getVisits({url: link}, function(results) {
     if (results.length == 0) {
       var items = JSON.parse(localStorage.getItem(mylistId));

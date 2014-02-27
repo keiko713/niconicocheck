@@ -10,7 +10,8 @@ $(function() {
     if (res == true) {
       var mylist = JSON.parse(localStorage.getItem('mylist'));
       for (var i = 0; i < checked.length; i++) {
-        var id = checked[i].id.substr(-8);
+        // checked[i].id => mylist<mylistId>
+        var id = checked[i].id.slice(6);
         localStorage.removeItem(id);
         for (var j = 0; j < mylist.length; j++) {
           if (mylist[j] == id) {
@@ -30,7 +31,8 @@ $(function() {
     var res = confirm('選択したマイリスト内の動画を全て既読にしてもよいですか？');
     if (res == true) {
       for (var i = 0; i < checked.length; i++) {
-        var mylistId = checked[i].id.substr(-8);
+        // checked[i].id => mylist<mylistId>
+        var mylistId = checked[i].id.slice(6);
         var items = JSON.parse(localStorage.getItem(mylistId));
         for (var j = 0; j < items.length; j++) {
           var item = items[j];
@@ -57,7 +59,7 @@ function show() {
 
 function drawObj(channel) {
   var link = $(channel).find('link')[0].textContent;
-  var mylistId = link.substr(-8);
+  var mylistId = link.match(/\d*$/)[0];
   var title = $(channel).find('title')[0].textContent;
   var creator = $(channel).find('creator')[0].textContent;
   var description = $(channel).find('description')[0].textContent;
@@ -72,7 +74,7 @@ function drawObj(channel) {
 
   var creatorObj = $('<div/>').addClass('help-text');
   var linkObj = $('<a/>').attr('href', link).attr('target', '_blank').text('ニコニコ動画内のページ');
-  creatorObj.append($('<span/>').text('実況者: ' + creator));
+  creatorObj.append($('<span/>').text('作成者: ' + creator));
   creatorObj.append('&nbsp;&nbsp;').append(linkObj);
   var descriptionObj = $('<div/>').addClass('help-text');
   descriptionObj.append($('<span/>').text(description));
