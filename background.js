@@ -15,6 +15,15 @@ function initialize() {
   checkUpdate();
 }
 
+var mylistRssCallback = function(mylistId) {
+  return function(data, textStatus) {
+    var items = $(data).find('item');
+    for (var i = 0; i < items.length; i++) {
+      addUnread(items[i], mylistId);
+    }
+  }
+};
+
 function checkUpdate() {
   newUnreadCount = 0;
   chrome.browserAction.setBadgeText({ text: "" });
@@ -26,12 +35,7 @@ function checkUpdate() {
     // initialize item
     localStorage.setItem(mylistId, "[]");
     var url = MYLISTURL + mylistId + "?rss=2.0";
-    $.get(url, function(data) {
-      var items = $(data).find('item');
-      for (var i = 0; i < items.length; i++) {
-        addUnread(items[i], mylistId);
-      }
-    }, 'xml');
+    $.get(url, mylistRssCallback(mylistId), 'xml');
   }
 
   // check every 5mins
