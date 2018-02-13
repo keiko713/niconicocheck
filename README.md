@@ -14,7 +14,7 @@ Chrome Web Store にアップしたので、[ここ](https://chrome.google.com/w
 
 Copyright and license
 ---------------------
-Copyright 2014 [Keiko Oda](http://twitter.com/keiko713)
+Copyright 2018 [Keiko Oda](http://twitter.com/keiko713)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.
