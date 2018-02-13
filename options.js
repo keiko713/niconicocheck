@@ -44,18 +44,21 @@ $(function() {
   });
 });
 
+var successFn = function(data) {
+  var channel = $(data).find('channel');
+  drawObj(channel[0]);
+}
+var errorFn = function(mylistId, url, data) {
+  drawErr(data.status, mylistId, url);
+}
+
 function show() {
   var mylist = JSON.parse(localStorage.getItem('mylist'));
   for (var i = 0; i < mylist.length; i++) {
     var mylistId = mylist[i];
 
     var url = MYLISTURL + mylistId + "?rss=2.0";
-    $.get(url, function(data) {
-      var channel = $(data).find('channel');
-      drawObj(channel[0]);
-    }, 'xml').fail(function(data) {
-      drawErr(data.status, mylistId, url);
-    });
+    $.get(url, successFn, 'xml').fail(errorFn.bind(this, mylistId, url));
   }
 }
 
