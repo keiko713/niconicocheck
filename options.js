@@ -53,7 +53,10 @@ function show() {
     $.get(url, function(data) {
       var channel = $(data).find('channel');
       drawObj(channel[0]);
-    }, 'xml');
+    }, 'xml'
+    ).fail(function(data) {
+      drawErr(data.status, mylistId, url);
+    });
   }
 }
 
@@ -75,6 +78,38 @@ function drawObj(channel) {
   var creatorObj = $('<div/>').addClass('help-text');
   var linkObj = $('<a/>').attr('href', link).attr('target', '_blank').text('ニコニコ動画内のページ');
   creatorObj.append($('<span/>').text('作成者: ' + creator));
+  creatorObj.append('&nbsp;&nbsp;').append(linkObj);
+  var descriptionObj = $('<div/>').addClass('help-text');
+  descriptionObj.append($('<span/>').text(description));
+
+  $(channelObj).append(titleObj).append(creatorObj).append(descriptionObj);
+  $('#watchlist-section').append(channelObj);
+}
+
+function drawErr(statusCode, mylistId, url) {
+  var description = '不明なエラーによりマイリストの情報が取得できませんでした。';
+  switch (statusCode) {
+    case 403:
+      description = 'このマイリストは非公開に設定されています。';
+      break;
+    case 404:
+      description = 'マイリストが見つかりません。すでに削除されたか存在しない可能性があります。';
+      break;
+  }
+
+  var title = '不明なマイリスト (' + mylistId + ')';
+
+  var channelObj = $('<div/>').addClass('item');
+
+  var titleObj = $('<div/>').addClass('checkbox');
+  var label = $('<label/>');
+  var input = $('<input type="checkbox">').attr('id', 'mylist' + mylistId);
+  label.append(input).append($('<span/>').text(title));
+  titleObj.append(label);
+
+  var creatorObj = $('<div/>').addClass('help-text');
+  var linkObj = $('<a/>').attr('href', url).attr('target', '_blank').text('ニコニコ動画内のページ');
+  creatorObj.append($('<span/>').text('作成者: 不明'));
   creatorObj.append('&nbsp;&nbsp;').append(linkObj);
   var descriptionObj = $('<div/>').addClass('help-text');
   descriptionObj.append($('<span/>').text(description));
