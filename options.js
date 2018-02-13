@@ -64,7 +64,7 @@ function drawObj(channel) {
   var link = $(channel).find('link')[0].textContent;
   var mylistId = link.match(/\d*$/)[0];
   var title = $(channel).find('title')[0].textContent;
-  var creator = $(channel).find('creator')[0].textContent;
+  var creator = $(channel).find('dc\\:creator')[0].textContent;
   var description = $(channel).find('description')[0].textContent;
 
   var channelObj = $('<div/>').addClass('item');
