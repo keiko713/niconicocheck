@@ -53,8 +53,7 @@ function show() {
     $.get(url, function(data) {
       var channel = $(data).find('channel');
       drawObj(channel[0]);
-    }, 'xml'
-    ).fail(function(data) {
+    }, 'xml').fail(function(data) {
       drawErr(data.status, mylistId, url);
     });
   }

@@ -29,6 +29,8 @@ function check() {
     var mylistId = mylist[i];
     var unreadObjects = JSON.parse(localStorage.getItem(mylistId));
     if (unreadObjects != null) {
+      var mylistDiv = $('<div/>');
+      mylistDiv.addClass('unreadMylist');
       for (var j = 0; j < unreadObjects.length; j++) {
         var unreadObj = unreadObjects[j];
         var itemObj = $('<div/>');
@@ -41,20 +43,23 @@ function check() {
         $(linkObj).addClass('link');
         $(titleObj).html(linkObj);
         $(itemObj).append(imgObj).append(titleObj);
-        $('#result').prepend(itemObj);
+        $(mylistDiv).prepend(itemObj);
         // Only show first 10 objects
         if (j === 9) {
           let moreUnreadItemObj = $('<div/>');
-          moreUnreadItemObj.addClass('item');
+          $(moreUnreadItemObj).addClass('item');
           let moreUnreadTitleObj = $('<p/>');
           let unreadMoreCount = unreadObjects.length - j - 1;
-          moreUnreadTitleObj.html('このマイリストはあと' + unreadMoreCount +'件の未読があります。');
-          moreUnreadItemObj.append(moreUnreadTitleObj);
-          $('#result').prepend(moreUnreadItemObj);
+          $(moreUnreadTitleObj).html('このマイリストはあと' + unreadMoreCount +'件の未読があります。');
+          $(moreUnreadItemObj).append(moreUnreadTitleObj);
+          $(mylistDiv).prepend(moreUnreadItemObj);
           break;
         }
       }
-      $('#result').append($('<hr/>'));
+      if ($(mylistDiv).html() != '') {
+        $(mylistDiv).append($('<div/>').addClass('item'));
+        $('#result').prepend(mylistDiv);
+      }
     }
   }
 }
