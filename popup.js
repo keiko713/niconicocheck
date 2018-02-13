@@ -42,7 +42,19 @@ function check() {
         $(titleObj).html(linkObj);
         $(itemObj).append(imgObj).append(titleObj);
         $('#result').prepend(itemObj);
+        // Only show first 10 objects
+        if (j === 9) {
+          let moreUnreadItemObj = $('<div/>');
+          moreUnreadItemObj.addClass('item');
+          let moreUnreadTitleObj = $('<p/>');
+          let unreadMoreCount = unreadObjects.length - j - 1;
+          moreUnreadTitleObj.html('このマイリストはあと' + unreadMoreCount +'件の未読があります。');
+          moreUnreadItemObj.append(moreUnreadTitleObj);
+          $('#result').prepend(moreUnreadItemObj);
+          break;
+        }
       }
+      $('#result').append($('<hr/>'));
     }
   }
 }
