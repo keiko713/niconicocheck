@@ -39,6 +39,7 @@ function check() {
         var imgObj = $('<img/>');
         $(imgObj).attr('src', unreadObj.thumbnail);
         var titleObj = $('<p/>');
+        titleObj.addClass('itemTitle');
         var linkObj = $('<a/>');
         $(linkObj).attr('href', unreadObj.link).text(unreadObj.title);
         $(linkObj).addClass('link');
