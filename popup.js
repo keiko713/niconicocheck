@@ -1,5 +1,4 @@
-const IMGURL = "http://tn-skr4.smilevideo.jp/smile?i=";
-const MYLISTURL = "http://www.nicovideo.jp/mylist/";
+const MYLISTURL = "https://www.nicovideo.jp/mylist/";
 
 $(function() {
   $('#id_mylist').focus();
@@ -27,6 +26,8 @@ function check() {
   var mylist = JSON.parse(localStorage.getItem('mylist'));
   for (var i = 0; i < mylist.length; i++) {
     var mylistId = mylist[i];
+    // localStorage #{mylistId} has JSON Object of unread contents
+    // {link: '', title: '', videoId: '', thumbnail: ''}
     var unreadObjects = JSON.parse(localStorage.getItem(mylistId));
     if (unreadObjects != null) {
       var mylistDiv = $('<div/>');
@@ -36,7 +37,7 @@ function check() {
         var itemObj = $('<div/>');
         itemObj.addClass('item');
         var imgObj = $('<img/>');
-        $(imgObj).attr('src', IMGURL + unreadObj.videoId);
+        $(imgObj).attr('src', unreadObj.thumbnail);
         var titleObj = $('<p/>');
         var linkObj = $('<a/>');
         $(linkObj).attr('href', unreadObj.link).text(unreadObj.title);

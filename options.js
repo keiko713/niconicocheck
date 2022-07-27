@@ -1,5 +1,4 @@
-const IMGURL = "http://tn-skr4.smilevideo.jp/smile?i=";
-const MYLISTURL = "http://www.nicovideo.jp/mylist/";
+const MYLISTURL = "https://www.nicovideo.jp/mylist/";
 
 $(function() {
   // function that shows all mylist
