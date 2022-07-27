@@ -1,6 +1,6 @@
 {
   "name": "__MSG_name__",
-  "version": "1.6",
+  "version": "1.7",
   "manifest_version": 2,
   "description": "__MSG_description__",
   "options_page": "options.html",
@@ -19,7 +19,7 @@
   },
   "permissions": [
     "tabs",
-    "http://www.nicovideo.jp/",
+    "https://www.nicovideo.jp/",
     "history",
     "notifications"
   ]
