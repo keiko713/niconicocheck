@@ -19,7 +19,6 @@
   },
   "permissions": [
     "https://www.nicovideo.jp/",
-    "history",
-    "notifications"
+    "history"
   ]
 }
