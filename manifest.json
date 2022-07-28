@@ -18,7 +18,6 @@
     "page": "background.html"
   },
   "permissions": [
-    "tabs",
     "https://www.nicovideo.jp/",
     "history",
     "notifications"
